@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SQLite;
+using Xamarin.Forms;
 
 namespace SoberOtsija.Models
 {
@@ -13,6 +15,11 @@ namespace SoberOtsija.Models
             database = new SQLiteConnection(databasePath);
             database.CreateTable<Sober>();
         }
+        public IEnumerable<Sober> GetChosenItem(string trait1, string trait2, string trait3)
+        {
+            return database.Query<Sober>("SELECT * FROM Sober WHERE Trait1 IN ('?','?','?') AND Trait2 IN ('?','?','?') AND Trait3 IN ('?','?','?')",trait1,trait2,trait3,trait1,trait2,trait3,trait1,trait2,trait3).ToList();
+        }
+
         public IEnumerable<Sober> GetItems()
         {
             return database.Table<Sober>().ToList();

@@ -51,12 +51,14 @@ namespace SoberOtsija
                 char3.Items.Add(trait);
             }
         }
+        
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             ListView soberList = new ListView();
-            soberList.SetBinding(ListView.ItemsSourceProperty, new Binding("."));
-
+            //soberList.SetBinding(ListView.ItemsSourceProperty, new Binding("."));
+            soberList.ItemsSource = App.Database.GetChosenItem(char1.SelectedItem.ToString(), char2.SelectedItem.ToString(), char3.SelectedItem.ToString());
+            //Sup.SelectedItem
             DataTemplate dataTemplate = new DataTemplate(() =>
             {
                 ViewCell viewCell = new ViewCell();
