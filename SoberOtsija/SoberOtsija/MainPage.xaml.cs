@@ -39,7 +39,7 @@ namespace SoberOtsija
                 "Naljakas",
                 "Tõsine",
                 "Julge",
-                "Argpükslik",
+                "Ärgpükslik",
                 "Empaatiline",
                 "Helde"
             };
@@ -58,6 +58,7 @@ namespace SoberOtsija
             ListView soberList = new ListView();
             //soberList.SetBinding(ListView.ItemsSourceProperty, new Binding("."));
             soberList.ItemsSource = App.Database.GetChosenItem(char1.SelectedItem.ToString(), char2.SelectedItem.ToString(), char3.SelectedItem.ToString());
+            //soberList.ItemsSource = App.Database.GetItems();
             //Sup.SelectedItem
             DataTemplate dataTemplate = new DataTemplate(() =>
             {
@@ -79,14 +80,33 @@ namespace SoberOtsija
             soberList.ItemTemplate = dataTemplate;
 
             pplFrame.Content = soberList;
+
+            soberList.ItemSelected += SoberList_ItemSelected;
+        }
+        private async void SoberList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Sober selectedFriend = (Sober)e.SelectedItem;
+            if (selectedFriend.Trait1 == char1.SelectedIndex.ToString() || selectedFriend.Trait1 == char2.SelectedIndex.ToString() || selectedFriend.Trait1 == char3.SelectedIndex.ToString())
+            {
+                await DisplayAlert("Omadused", "Seda inimene sul on ainult 1 sarnane omadus - "+selectedFriend.Trait1, "Hästi");
+                SoberPage sbrPage = new SoberPage();
+                sbrPage.BindingContext = selectedFriend;
+                await Navigation.PushAsync(sbrPage);
+            }
+            else if (selectedFriend.Trait2 == char1.SelectedIndex.ToString() || selectedFriend.Trait2 == char2.SelectedIndex.ToString() || selectedFriend.Trait2 == char3.SelectedIndex.ToString())
+            {
+                await DisplayAlert("Omadused", "Seda inimene sul on ainult 1 sarnane omadus - " + selectedFriend.Trait2, "Hästi");
+                SoberPage sbrPage = new SoberPage();
+                sbrPage.BindingContext = selectedFriend;
+                await Navigation.PushAsync(sbrPage);
+            }
+            else if (selectedFriend.Trait3 == char1.SelectedIndex.ToString() || selectedFriend.Trait3 == char2.SelectedIndex.ToString() || selectedFriend.Trait3 == char3.SelectedIndex.ToString())
+            {
+                await DisplayAlert("Omadused", "Seda inimene sul on ainult 1 sarnane omadus - " + selectedFriend.Trait2, "Hästi");
+                SoberPage sbrPage = new SoberPage();
+                sbrPage.BindingContext = selectedFriend;
+                await Navigation.PushAsync(sbrPage);
+            }
         }
     }
-
-        //protected override void OnAppearing()
-        //{
-        //    soberList.ItemsSource = App.Database.GetItems();
-        //    base.OnAppearing();
-        //}
-
-
 }

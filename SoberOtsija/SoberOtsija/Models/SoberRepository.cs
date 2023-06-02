@@ -17,9 +17,8 @@ namespace SoberOtsija.Models
         }
         public IEnumerable<Sober> GetChosenItem(string trait1, string trait2, string trait3)
         {
-            return database.Query<Sober>("SELECT * FROM Sober WHERE Trait1 IN ('?','?','?') AND Trait2 IN ('?','?','?') AND Trait3 IN ('?','?','?')",trait1,trait2,trait3,trait1,trait2,trait3,trait1,trait2,trait3).ToList();
+            return database.Query<Sober>("SELECT * FROM Sober WHERE Trait1 IN (?,?,?) OR Trait2 IN (?,?,?) OR Trait3 IN (?,?,?)",trait1,trait2,trait3,trait1,trait2,trait3,trait1,trait2,trait3).ToList();
         }
-
         public IEnumerable<Sober> GetItems()
         {
             return database.Table<Sober>().ToList();
