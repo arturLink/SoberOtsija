@@ -53,35 +53,41 @@ namespace SoberOtsija
         }
         
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            ListView soberList = new ListView();
-            //soberList.SetBinding(ListView.ItemsSourceProperty, new Binding("."));
-            soberList.ItemsSource = App.Database.GetChosenItem(char1.SelectedItem.ToString(), char2.SelectedItem.ToString(), char3.SelectedItem.ToString());
-            //soberList.ItemsSource = App.Database.GetItems();
-            //Sup.SelectedItem
-            DataTemplate dataTemplate = new DataTemplate(() =>
+            if (char1.SelectedIndex == -1 || (char2.SelectedIndex == -1 || char3.SelectedIndex == -1))
             {
-                ViewCell viewCell = new ViewCell();
+                await DisplayAlert("Hoiatus", "Omadused on tühi","Ok");
+            }
+            else 
+            {
+                ListView soberList = new ListView();
+                soberList.ItemsSource = App.Database.GetChosenItem(char1.SelectedItem.ToString(), char2.SelectedItem.ToString(), char3.SelectedItem.ToString());
+                DataTemplate dataTemplate = new DataTemplate(() =>
+                {
+                    ViewCell viewCell = new ViewCell();
 
-                StackLayout stackLayout = new StackLayout();
-                stackLayout.Orientation = StackOrientation.Horizontal;
+                    StackLayout stackLayout = new StackLayout();
+                    stackLayout.Orientation = StackOrientation.Horizontal;
 
-                Label label = new Label();
-                label.SetBinding(Label.TextProperty, "Name");
-                label.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+                    Label label = new Label();
+                    label.SetBinding(Label.TextProperty, "Name");
+                    label.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+                    label.TextColor = Color.DarkRed;
+                    label.FontAttributes = FontAttributes.Bold;
 
-                stackLayout.Children.Add(label);
-                viewCell.View = stackLayout;
+                    stackLayout.Children.Add(label);
+                    viewCell.View = stackLayout;
 
-                return viewCell;
-            });
+                    return viewCell;
+                });
 
-            soberList.ItemTemplate = dataTemplate;
+                soberList.ItemTemplate = dataTemplate;
 
-            pplFrame.Content = soberList;
+                pplFrame.Content = soberList;
 
-            soberList.ItemSelected += SoberList_ItemSelected;
+                soberList.ItemSelected += SoberList_ItemSelected;
+            }
         }
         private async void SoberList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
