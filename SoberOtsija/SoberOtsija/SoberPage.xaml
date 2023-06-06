@@ -82,8 +82,9 @@
                     VerticalTextAlignment="Center"/>
                 </StackLayout>
             </Frame>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Tagasi" Clicked="Cancel"/>
+            <StackLayout>
+                <Button Text="Salvesta" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Cancel"/>
+                <Button Text="Tagasi" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Cancel"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
