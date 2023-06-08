@@ -14,6 +14,7 @@ namespace SoberOtsija.Models
         {
             database = new SQLiteConnection(databasePath);
             database.CreateTable<Sober>();
+            database.CreateTable<salvSobrad>();
         }
         public IEnumerable<Sober> GetChosenItem(string trait1, string trait2, string trait3)
         {
@@ -42,6 +43,24 @@ namespace SoberOtsija.Models
             {
                 return database.Insert(item);
             }
+        }
+        //SALV
+        public int SaveItemSalv(salvSobrad item)
+        {
+            if (item.Id != 0)
+            {
+                database.Update(item);
+                return item.Id;
+            }
+            else
+            {
+                return database.Insert(item);
+            }
+        }
+
+        public IEnumerable<salvSobrad> GetItemsSalv()
+        {
+            return database.Table<salvSobrad>().ToList();
         }
     }
 }

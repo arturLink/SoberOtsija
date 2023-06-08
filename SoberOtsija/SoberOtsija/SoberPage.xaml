@@ -83,7 +83,7 @@
                 </StackLayout>
             </Frame>
             <StackLayout>
-                <Button Text="Salvesta" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Cancel"/>
+                <Button Text="Salvesta" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Button_Clicked"/>
                 <Button Text="Tagasi" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Cancel"/>
             </StackLayout>
         </StackLayout>

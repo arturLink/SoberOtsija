@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SoberOtsija.TabbedMain" BarBackgroundColor="LightPink" SelectedTabColor="PaleVioletRed" UnselectedTabColor="LightPink" BarTextColor="DarkRed">
+
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Otsi sõbrad">
+        <StackLayout x:Name="st" BackgroundColor="Pink">
+            <Frame BorderColor="PaleVioletRed"
+           BackgroundColor="LightPink"
+           CornerRadius="5"
+           HasShadow="True"
+           Margin="3"
+           Padding="3">
+                <StackLayout>
+                    <Label Text="Tere tere! Otsi oma uus sõber!"
+               BackgroundColor="LightPink"
+               TextColor="DarkRed"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+
+
+                    <Label Text="Aga milline sõber sa tahad?"
+               BackgroundColor="LightPink"
+               TextColor="DarkRed"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="PaleVioletRed"
+           BackgroundColor="LightPink"
+           CornerRadius="5"
+           HasShadow="True"
+           Margin="3"
+           Padding="3">
+                <StackLayout>
+                    <Picker x:Name="char1" Title="Esimene omadus" BackgroundColor="LightPink" ItemsSource="{Binding traitsList}"/>
+                    <Picker x:Name="char2" Title="Teine omadus" ItemsSource="{Binding traitsList}"/>
+                    <Picker x:Name="char3" Title="Kolmas omadus" ItemsSource="{Binding traitsList}"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Text="Otsi" BackgroundColor="LightPink" TextColor="DarkRed" BorderColor="PaleVioletRed" BorderWidth="1" Clicked="Button_Clicked">
+            </Button>
+            <Frame BorderColor="PaleVioletRed"
+           BackgroundColor="LightPink"
+           CornerRadius="5"
+           HasShadow="True"
+           Margin="3"
+           x:Name="pplFrame"    
+           Padding="3">
+                <!--
+            <ListView x:Name="soberList" ItemsSource="{Binding}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" FontSize="Medium" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            -->
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Salvestatud Sõbrad">
+        <StackLayout BackgroundColor="Pink">
+            <ListView x:Name="salvSobradlist" ItemsSource="{Binding }" ItemSelected="salvSobrad_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" FontSize="Medium" TextColor="DarkRed" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

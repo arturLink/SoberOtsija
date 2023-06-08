@@ -29,7 +29,7 @@ namespace SoberOtsija
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage( new MainPage());
+            MainPage = new NavigationPage( new TabbedMain());
         }
 
         protected override void OnStart()
