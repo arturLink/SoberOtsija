@@ -62,5 +62,9 @@ namespace SoberOtsija.Models
         {
             return database.Table<salvSobrad>().ToList();
         }
+        public int DeleteItemSalv(int id)
+        {
+            return database.Delete<salvSobrad>(id);
+        }
     }
 }

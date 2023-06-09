@@ -95,7 +95,7 @@ namespace SoberOtsija
         private async void salvSobrad_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             salvSobrad selectedFriend = (salvSobrad)e.SelectedItem;
-            SoberPage sbrPage = new SoberPage();
+            SalvSoberPage sbrPage = new SalvSoberPage();
             sbrPage.BindingContext = selectedFriend;
             await Navigation.PushAsync(sbrPage);
         }
